@@ -7,6 +7,20 @@
 </head>
 <body>
     <h2>Welcome to Patient Dashboard</h2>
-    <!-- Display patient-specific details here -->
+    
+    <h3>Blog Posts</h3>
+    <ul>
+        {% for post in blog_posts %}
+            <li>
+                <h4>{{ post.title }}</h4>
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 200px;">
+                <p>{{ post.short_summary }}</p>
+                <p>Category: {{ post.category }}</p>
+                {% if not post.draft %}
+                    <p>Author: {{ post.author }}</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

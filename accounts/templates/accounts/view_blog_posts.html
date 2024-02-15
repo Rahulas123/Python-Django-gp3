@@ -3,26 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Dashboard</title>
+    <title>View Blog Posts</title>
 </head>
 <body>
-    <h2>Welcome to Doctor Dashboard</h2>
-    
-    <h3>Create Blog Post</h3>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-
-    <h3>Your Blog Posts</h3>
+    <h2>Blog Posts</h2>
     <ul>
         {% for post in blog_posts %}
             <li>
-                <h4>{{ post.title }}</h4>
+                <h3>{{ post.title }}</h3>
                 <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 200px;">
                 <p>{{ post.short_summary }}</p>
-                <p>Category: {{ post.category }}</p>
+                {% if not post.draft %}
+                    <p>Author: {{ post.author }}</p>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>

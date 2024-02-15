@@ -1,26 +1,16 @@
-"""user_auth URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
-from accounts.views import signup, patient_dashboard, doctor_dashboard
+from django.urls import path,include
+from accounts.views import login_view,signup, patient_dashboard, doctor_dashboard,create_blog_post, view_blog_posts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', signup, name='signup'),
+     path('login/', login_view, name='login'),
     path('', signup, name='signup'),
     path('patient/', patient_dashboard, name='patient_dashboard'),
     path('doctor/', doctor_dashboard, name='doctor_dashboard'),
+     path('create_blog_post/', create_blog_post, name='create_blog_post'),
+    path('view_blog_posts/', view_blog_posts, name='view_blog_posts'),
+    # path('accounts/', include('django.contrib.auth.urls')),
 ]
